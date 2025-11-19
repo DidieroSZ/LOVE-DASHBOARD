@@ -1,0 +1,34 @@
+.scalloped {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 3/2;
+        background-color: var(--Blanco);
+        position: relative;
+        padding: 50px;
+        overflow: hidden;
+        --top: -13px;
+        --left: 2px;
+        --circle-size: 3px;     /* Tamaño del círculo */
+        --gap: 20px;             /* Espacio entre círculos */
+        --pattern-height: 20px;  /* Altura visible del borde */
+    }
+        .scalloped::before {
+            content: "";
+            position: absolute;
+            top: var(--top);
+            left: var(--left);
+            width: 100%;
+            height: calc(var(--circle-size) + var(--pattern-height));
+            background: radial-gradient(circle, var(--Negro) 50%, transparent 51%) repeat-x;
+            background-size: calc(var(--circle-size) + var(--gap)) calc(var(--circle-size) + var(--gap));
+        }
+        .scalloped::after {
+            content: "";
+            position: absolute;
+            bottom: var(--top);
+            left: var(--left);
+            width: 100%;
+            height: calc(var(--circle-size) + var(--pattern-height));
+            background: radial-gradient(circle, var(--Negro) 50%, transparent 51%) repeat-x;
+            background-size: calc(var(--circle-size) + var(--gap)) calc(var(--circle-size) + var(--gap));
+        }
