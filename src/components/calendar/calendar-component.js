@@ -48,7 +48,7 @@ export class CalendarComponent extends LitElement {
                     </table>
                 </div>
                 <div class="bottom--calendar--section">
-                    <p class="shadows-into-light-regular">Amor, amor y mucho más amor.</p>
+                    <p class="shadows-into-light-regular">¿Crees qué estariamos juntos en tooodos los universos?</p>
                 </div>
             </div>  
         `;
@@ -78,7 +78,7 @@ export class CalendarComponent extends LitElement {
         monthDate.textContent = meses[month];
     }
     _calendarDays() {
-       
+        const realDay = new Date().getDate();
         const year =  new Date().getFullYear();
         const month = new Date().getMonth();
        
@@ -110,9 +110,25 @@ export class CalendarComponent extends LitElement {
         return html`
             ${weeks.map(week => html`
                 <tr>
-                    ${week.map(day => html`<td data-day="${day}">
-                           <p>${day}</p> 
-                        </td>`)}
+                    ${week.map(day => {
+
+                            if (day == realDay) {
+                                return html`
+                                    <td data-day="${day}" id="today--day--calendar">
+                                    <p>${day}</p> 
+                                    </td>
+                                `
+                            }
+                            else{
+                               return html`
+                                    <td data-day="${day}">
+                                    <p>${day}</p> 
+                                    </td>
+                                ` 
+                            }
+                            
+                        }  
+                    )}
                 </tr>
             `)}
         `;

@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
 :root{
     --Negro: #14080E;
     --Blanco: #fff;
     --Crema: #FCF7F8;
     --Gris: #CED3DC;
+    --Rojo: #ff0000;
+    --Ginda: #5A0E24;
+    --Rosa: #76153C;
 
     --Pad01: 1rem;
     --Pad02: 2rem;
@@ -16,6 +20,9 @@
     --Blanco: #fff;
     --Crema: #FCF7F8;
     --Gris: #CED3DC;
+    --Rojo: #ff0000;
+    --Ginda: #5A0E24;
+    --Rosa: #76153C;
 
     --Pad01: 1rem;
     --Pad02: 2rem;
@@ -43,6 +50,9 @@
 .d-row{
     flex-direction: row;
 }
+
+
+/** ------ FONTS ------ */
 .shadows-into-light-regular {
   font-family: "Shadows Into Light", cursive;
   font-weight: 400;
@@ -53,6 +63,12 @@
   font-weight: 400;
   font-style: normal;
 }
+.cutive-mono-regular {
+  font-family: "Cutive Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+/** ------ FONTS ------ */
 
 
 .general--section{
@@ -65,6 +81,9 @@
 .main--container{
     background-color: var(--Negro);
     padding: var(--Pad02);
+/* 
+    background-color: #d20062;
+    background-image: radial-gradient(at 60% 84%, #d20062 0%, transparent 60%), radial-gradient(at 2% 97%, #d6589f 0%, transparent 50%), radial-gradient(at 8% 91%, #d895da 0%, transparent 40%), radial-gradient(at 31% 68%, #c4e4ff 0%, transparent 30%); */
 }
     .template--container--grid{
         width: auto;

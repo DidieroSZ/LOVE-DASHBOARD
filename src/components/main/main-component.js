@@ -2,6 +2,7 @@ import { LitElement, html, css } from "lit-element";
 import estilosGenerales from '../../css/general.css?inline';
 import { unsafeCSS } from 'lit-element';
 import "../calendar/calendar-component.js"
+import "../letters/letters-component.js"
 
 export class MainComponent extends LitElement {
 

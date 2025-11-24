@@ -1,0 +1,40 @@
+.letters--container{
+    width: 100%;
+    height: 100%;
+    padding: var(--Pad01);
+    aspect-ratio: 3/2;
+    background-color: var(--Blanco);
+    overflow: hidden;
+    justify-content: space-between;
+    gap: var(--Pad01);
+}
+    .grid--letters{
+        width: 100%;
+        aspect-ratio: 1/1;
+        background-color: var(--Ginda);
+        overflow: hidden;
+        border-radius: var(--Pad01);
+        padding: var(--Pad01);
+        display: grid;
+
+        /* grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: repeat(7, 1fr);  */
+    }
+        .letter--container{
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+            /* border: solid 1px var(--Blanco); */
+        }
+        .letter--container > p{
+            font-size: 1.8rem;
+            color: var(--Blanco);
+
+        }
+    .input--name--container{
+        width: 100%;
+        height: auto;
+    }

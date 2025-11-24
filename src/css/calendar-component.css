@@ -116,10 +116,35 @@
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                color: red;
+                color: var(--Rojo);
                 font-size: 2rem;
                 z-index: 1;
             }
+            
+            #today--day--calendar{
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #today--day--calendar > p{
+                width: fit-content;
+                position: relative;
+                z-index: 5;
+            }
+                #today--day--calendar::before{
+                    content: ""; 
+                    transform: translate(-50%, -50%);
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    border: 2px solid var(--Negro);
+                    aspect-ratio: 1/1;
+                    width: 1.5rem;
+                    border-radius: 50%;
+                    z-index: 1;
+                }
+
 
     .bottom--calendar--section{
         color: var(--Negro);
@@ -131,7 +156,7 @@
         width: 100%;
         font-size: 1.5rem;
         text-align: center;
-        transform: translate(-50%, -50%) rotate(-8deg);
+        transform: translate(-50%, -50%);
         position: absolute;
         top: 50%;
         left: 50%;
