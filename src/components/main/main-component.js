@@ -2,7 +2,8 @@ import { LitElement, html, css } from "lit-element";
 import estilosGenerales from '../../css/general.css?inline';
 import { unsafeCSS } from 'lit-element';
 import "../calendar/calendar-component.js"
-import "../letters/letters-component.js"
+/* import "../letters/letters-component.js" */
+import "../message/message-component.js";
 
 export class MainComponent extends LitElement {
 
@@ -24,8 +25,8 @@ export class MainComponent extends LitElement {
             <main class="general--section main--container d-flexx">
 
                 <section class="template--container--grid">
-
-                    <letters-component class="grid--letters"></letters-component>
+                    <message-component class="grid--letters"></message-component>
+                    <!-- <letters-component class="grid--letters"></letters-component> -->
                     <calendar-component class="grid--calendar"></calendar-component>
                     <botton-component class="grid--botton"></botton-component>    
 

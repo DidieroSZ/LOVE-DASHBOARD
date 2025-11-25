@@ -16,9 +16,6 @@
         border-radius: var(--Pad01);
         padding: var(--Pad01);
         display: grid;
-
-        /* grid-template-columns: repeat(7, 1fr);
-        grid-template-rows: repeat(7, 1fr);  */
     }
         .letter--container{
             width: 100%;
@@ -27,7 +24,6 @@
             overflow: hidden;
             position: relative;
             text-align: center;
-            /* border: solid 1px var(--Blanco); */
         }
         .letter--container > p{
             font-size: 1.8rem;

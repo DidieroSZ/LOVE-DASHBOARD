@@ -57,7 +57,6 @@ export class LattersComponent extends LitElement {
         const s = (tsL < 7) ? 7 : tsL;
 
         const containerGrid = this.renderRoot.querySelector('.grid--letters');
-
         containerGrid.style.gridTemplateColumns = `repeat(${s}, 1fr)`;
         containerGrid.style.gridTemplateRows  = `repeat(${s}, 1fr)`;
     }
@@ -75,9 +74,8 @@ export class LattersComponent extends LitElement {
             )
         );
 
-        // --- HER NAME (horizontal) ---
         if (her.length > 0) {
-            const row = (his.length) ? (his.length - 1) : 0; // fila fija para simplicidad
+            const row = (his.length) ? (his.length - 1) : 0;
 
             for (let i = 0; i < her.length; i++) {
                 grid[row][i] = her[i];
@@ -86,22 +84,20 @@ export class LattersComponent extends LitElement {
 
         // --- HIS NAME (vertical) ---
         if (his.length > 0) {
-            const col = her.length - 1; // MISMO PUNTO DE INTERSECCIÓN
+            const col = her.length - 1;
 
             for (let i = 0; i < his.length; i++) {
                 grid[i][col] = his[i];
             }
         }
 
-        // --- INTERSECCIÓN: última letra de ambos ---
         if (her.length > 0 && his.length > 0) {
             const row = his.length - 1;
             const col = her.length - 1;
 
-            grid[row][col] = "❤";  // EL CORAZÓN
+            grid[row][col] = "❤";
         }
 
-        // Render de la matriz
         return html`
             ${grid.flat().map(l => html`
                 <span class="letter--container d-flexx">
@@ -120,10 +116,7 @@ export class LattersComponent extends LitElement {
         this.hisName = hisName;
 
         const maxLen = Math.max(herName.length, hisName.length);
-
         this.size = maxLen < 7 ? 7 : maxLen;
-
-        // provoca rerender
         this.requestUpdate();
     }
 
