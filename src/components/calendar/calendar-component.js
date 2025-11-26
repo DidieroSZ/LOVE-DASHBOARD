@@ -18,13 +18,14 @@ export class CalendarComponent extends LitElement {
         css` ${unsafeCSS(generalStyles)}`,
         css` ${unsafeCSS(calendarStyles)}`,
     ];
+
     firstUpdated(){
         this._actualDate();
     }
 
     render(){
         return html`
-            <div class="calendar--container scalloped d-flexx d-col">
+            <div class="calendar--container general--container scalloped d-flexx d-col">
                 <div class="top--calendar--section d-flexx d-col">
                     <p class="neutral--date shadows-into-light-regular">20/11/2025</p>
                     <h4 class="month--date fredericka-the-great-regular">Noviembre.</h4>
@@ -77,6 +78,8 @@ export class CalendarComponent extends LitElement {
         neutralDate.textContent = `${new Date().getDate()}/${month+1}/${year}`;
         monthDate.textContent = meses[month];
     }
+
+
     _calendarDays() {
         const realDay = new Date().getDate();
         const year =  new Date().getFullYear();
