@@ -5,6 +5,7 @@ import "../calendar/calendar-component.js"
 /* import "../letters/letters-component.js" */
 import "../message/message-component.js";
 import "../time/time-component.js";
+import "../chart/chart-component.js";
 
 export class MainComponent extends LitElement {
 

@@ -37,7 +37,7 @@ export class TimeComponent extends LitElement {
                         <small class="cutive-mono-regular">días</small>
                     </span>
                    
-                    <p class="parisienne-regular red--hand--text">Juntos</p>
+                    <p class="parisienne-regular red--hand--text">Juntos.</p>
                 </div>
             </section>
         `;

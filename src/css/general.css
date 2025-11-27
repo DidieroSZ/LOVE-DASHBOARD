@@ -109,7 +109,7 @@
 }
 
 .main--container{
-    background-color: var(--Negro);
+    background-color: var(--Gris);
     padding: var(--Pad02);
 /* 
     background-color: #d20062;
@@ -140,7 +140,6 @@
         .grid--chart{
              grid-column: 2 / 3;
             grid-row: 1 / 2;
-            background-color: var(--Baige);
         }
         .grid--message{
             grid-column: 1 / 3;

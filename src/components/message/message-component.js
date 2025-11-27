@@ -38,7 +38,7 @@ export class MessageComponent extends LitElement {
                        <p class="cutive-mono-regular red--hand--text" id="name--message">DE: <br> <span  class="parisienne-regular red--hand--text">Didier.</span></p>
                     </div>
                     <div class="equal--space d-flexx">
-                       <p class="cutive-mono-regular red--hand--text"> <span class="parisienne-regular red--hand--text">10/12 <br>2025 </span></p>
+                       <p class="cutive-mono-regular red--hand--text"> <span class="parisienne-regular red--hand--text">10/10 <br>2023 </span></p>
                     </div>
                 </div>
                 <article class="message--section d-flexx">
@@ -63,7 +63,7 @@ export class MessageComponent extends LitElement {
     } */
 
     _generateHandFont(){
-        this.frase = "Mi lugar favorito en el mundo es a tu lado.";
+        this.frase = "Soy mucho más yo cuando estoy contigo.";
         const splitSentence = this.frase.split(' ');
         const longitud = splitSentence.length;
         const mitad = Math.floor(longitud / 2);

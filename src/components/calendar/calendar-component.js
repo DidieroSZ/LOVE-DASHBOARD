@@ -1,6 +1,6 @@
 import { LitElement, html, css } from "lit-element";
 import generalStyles from '../../css/general.css?inline';
-import calendarStyles from '../../css/calendar-component.css?inline';
+import calendarStyles from '../../css/calendarStyles.css?inline';
 import { unsafeCSS } from 'lit-element';
 
 export class CalendarComponent extends LitElement {
