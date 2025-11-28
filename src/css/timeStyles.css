@@ -1,0 +1,42 @@
+.red--hand--text{
+    color: var(--Rojo);
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.time--container{
+    border-radius: var(--Pad01);
+    background-color: var(--Blanco);
+}
+    .time--container > .circle--icon{
+        position: absolute;
+        top: var(--Pad01);
+        left: var(--Pad01);
+    }
+    .number--container{
+        width: 100%;
+        min-height: 50%; 
+    }
+        .number--container > *{
+            text-align: center;
+        }
+        .counter{
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+            .counter > p{
+                font-size: 3rem;
+                text-align: center;
+                align-items: end;
+            }
+            .counter > small{
+                font-size: 0.8rem;
+                font-weight: bold;
+            }
+        .number--container > p{
+            width: 100%;
+            text-transform: capitalize;
+            font-size: 2rem;
+            font-weight: bold;
+        }
