@@ -6,6 +6,7 @@ import "../calendar/calendar-component.js"
 import "../message/message-component.js";
 import "../time/time-component.js";
 import "../chart/chart-component.js";
+import "../music/music-component.js";
 
 export class MainComponent extends LitElement {
 
@@ -25,7 +26,7 @@ export class MainComponent extends LitElement {
     render(){
         return html`
             <main class="general--section main--container d-flexx">
-
+            
                 <section class="template--container--grid">
                     <time-component class="grid--time"></time-component>    
                     <chart-component class="grid--chart"></chart-component>    

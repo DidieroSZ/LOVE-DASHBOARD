@@ -21,7 +21,7 @@
         left: var(--left);
         width: 100%;
         height: calc(var(--circle-size) + var(--pattern-height));
-        background: radial-gradient(circle, var(--Gris) 50%, transparent 51%) repeat-x;
+        background: radial-gradient(circle, #00071c 50%, transparent 51%) repeat-x;
         background-size: calc(var(--circle-size) + var(--gap)) calc(var(--circle-size) + var(--gap));
     }
     .scalloped::after {
@@ -31,7 +31,7 @@
         left: var(--left);
         width: 100%;
         height: calc(var(--circle-size) + var(--pattern-height));
-        background: radial-gradient(circle, var(--Gris) 50%, transparent 51%) repeat-x;
+        background: radial-gradient(circle, #00071c 50%, transparent 51%) repeat-x;
         background-size: calc(var(--circle-size) + var(--gap)) calc(var(--circle-size) + var(--gap));
     }
 

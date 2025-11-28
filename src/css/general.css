@@ -25,6 +25,7 @@
     --Negro: #14080E;
     --Blanco: #fff;
     --Gris: #CED3DC;
+    --Gris2: #f4f5f9;
     --Rojo: #ff0000;
     --Ginda: #5A0E24;
     --Rosa: #76153C;
@@ -111,6 +112,8 @@
 .main--container{
     background-color: var(--Gris);
     padding: var(--Pad02);
+    background: url(../media/neat.png);
+    background-size: contain;    
 /* 
     background-color: #d20062;
     background-image: radial-gradient(at 60% 84%, #d20062 0%, transparent 60%), radial-gradient(at 2% 97%, #d6589f 0%, transparent 50%), radial-gradient(at 8% 91%, #d895da 0%, transparent 40%), radial-gradient(at 31% 68%, #c4e4ff 0%, transparent 30%); */

@@ -25,7 +25,7 @@ export class CalendarComponent extends LitElement {
 
     render(){
         return html`
-            <div class="calendar--container general--container scalloped d-flexx d-col">
+            <section class="calendar--container general--container scalloped d-flexx d-col">
                 <div class="top--calendar--section d-flexx d-col">
                     <p class="neutral--date shadows-into-light-regular">20/11/2025</p>
                     <h4 class="month--date fredericka-the-great-regular">Noviembre.</h4>
@@ -51,7 +51,7 @@ export class CalendarComponent extends LitElement {
                 <div class="bottom--calendar--section">
                     <p class="shadows-into-light-regular">¿Crees qué estariamos juntos en tooodos los universos?</p>
                 </div>
-            </div>  
+            </section>  
         `;
     }
 
