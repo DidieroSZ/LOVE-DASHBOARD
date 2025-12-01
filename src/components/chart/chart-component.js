@@ -46,23 +46,6 @@ export class ChartComponent extends LitElement {
                     <span class="pill--graph d-flexx pill03">Tóxicidad</span>
                     <span class="pill--graph d-flexx pill04">Felicidad</span>
                 </div>
-            <!--     
-            <div class="top--chart d-flexx">
-                    <h4 class="tinos-regular">Métricas de   relación. </h4>
-                </div>
-                <div class="graph--container">
-                    <span class="bar--graph d-flexx bar01"></span>
-                    <span class="bar--graph d-flexx bar02"></span>
-                    <span class="bar--graph d-flexx bar03"></span>
-                    <span class="bar--graph d-flexx bar04"></span>
-                </div>
-                <div class="titles--container d-flexx">
-                    <span class="pill--graph d-flexx pill01">Amor</span>
-                    <span class="pill--graph d-flexx pill02">Conexión</span>
-                    <span class="pill--graph d-flexx pill03">Tóxicidad</span>
-                    <span class="pill--graph d-flexx pill04">Felicidad</span>
-                </div>
-                -->
             </section>
         `;
     }

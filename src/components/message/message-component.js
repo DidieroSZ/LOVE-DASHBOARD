@@ -63,7 +63,7 @@ export class MessageComponent extends LitElement {
     } */
 
     _generateHandFont(){
-        this.frase = "Soy mucho más yo cuando estoy contigo.";
+        this.frase = "Desde que llegaste mi vida es un lugar mejor.";
         const splitSentence = this.frase.split(' ');
         const longitud = splitSentence.length;
         const mitad = Math.floor(longitud / 2);
