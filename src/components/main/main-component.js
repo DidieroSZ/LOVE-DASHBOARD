@@ -1,23 +1,29 @@
 import { LitElement, html, css } from "lit-element";
 import generalStyles from '../../css/general.css?inline';
 import { unsafeCSS } from 'lit-element';
-import "../calendar/calendar-component.js"
-/* import "../letters/letters-component.js" */
-import "../message/message-component.js";
-import "../time/time-component.js";
-import "../chart/chart-component.js";
-import "../music/music-component.js";
+
+import "../calendar/calendar-component.js" // <---- CALENDAR COMPONENT
+import "../message/message-component.js"; // <---- LETTER COMPONENT
+import "../time/time-component.js"; // <---- TIME COMPONENT
+import "../chart/chart-component.js"; // <---- CHART COMPONENT
+import "../music/music-component.js"; // <---- MUSIC COMPONENT
+import "../custom/custom-component.js"; // <---- CUSTOM COMPONENT
 import img01 from '../../media/img01.png';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+
+import { iconos } from '../../utils/icons.js';
 
 export class MainComponent extends LitElement {
 
     static properties = {
         valor: { type: Number },
+        mostrar: { type: Boolean },
     };
 
     constructor(){
         super();
         this.valor = 0;
+        this.mostrar = false;
     }
 
     static styles = [
@@ -34,14 +40,23 @@ export class MainComponent extends LitElement {
                     <message-component class="grid--message"></message-component>
                     <calendar-component class="grid--calendar"></calendar-component>
                     <music-component class="grid--music"></music-component>   
-                    <button class="modal-btn d-flexx">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bolt-icon lucide-bolt"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><circle cx="12" cy="12" r="4"/></svg>
+                    <button class="modal-btn d-flexx" @click=${this._openModal} title="Configuración">
+                        ${unsafeHTML(iconos.bolt)}
                     </button> 
                 </section>
                 
-                <custom-component></custom-component>
+                <custom-component @close-modal=${this._closeModal} .mostrar=${this.mostrar}></custom-component>
             </main>
         `;
     }    
+
+    /* -------- FUNCTIONS MODAL -------- */
+    _openModal(){
+        this.mostrar = true;
+    }
+    _closeModal(){
+        this.mostrar = false;
+    }
+    /* -------- FUNCTIONS MODAL -------- */
 }
 customElements.define('main-component', MainComponent);

@@ -27,6 +27,7 @@
     --Gris: #CED3DC;
     --Gris2: #f4f5f9;
     --Rojo: #ff0000;
+    --Rojo2: #f1aeb5;
     --Ginda: #5A0E24;
     --Rosa: #76153C;
     --Cafe: #51331b;
@@ -113,11 +114,16 @@
     background-color: var(--Gris);
     padding: var(--Pad02);
     background: url(../media/neat.png);
-    background-size: contain;    
+    background-size: cover;    
     position: relative;
-/* 
+    /* 
     background-color: #d20062;
-    background-image: radial-gradient(at 60% 84%, #d20062 0%, transparent 60%), radial-gradient(at 2% 97%, #d6589f 0%, transparent 50%), radial-gradient(at 8% 91%, #d895da 0%, transparent 40%), radial-gradient(at 31% 68%, #c4e4ff 0%, transparent 30%); */
+    background-image: 
+    radial-gradient(at 60% 84%, #d20062 0%, transparent 60%), 
+    radial-gradient(at 2% 97%, #d6589f 0%, transparent 50%),
+    radial-gradient(at 8% 91%, #d895da 0%, transparent 40%), 
+    radial-gradient(at 31% 68%, #c4e4ff 0%, transparent 30%); 
+    */
 }
     .decorations{
         width: 5rem;
@@ -179,6 +185,7 @@
             padding: var(--Pad01);
             overflow: hidden;
         }
+
         .modal-btn{
             position: absolute;
             top: var(--Pad01);
@@ -187,7 +194,7 @@
             height: auto;
             background-color: var(--Blanco);
             aspect-ratio: 1/1;
-            border-radius: 10px;
+            border-radius: var(--Pad01);
             border: none;
             color: var(--Negro);
             cursor: pointer;

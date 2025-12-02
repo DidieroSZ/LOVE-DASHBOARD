@@ -1,7 +1,11 @@
 import { LitElement, html, css } from "lit-element";
 import generalStyles from '../../css/general.css?inline';
 import timeStyles from '../../css/timeStyles.css?inline';
+
 import { unsafeCSS } from 'lit-element';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+
+import { iconos } from '../../utils/icons.js'
 
 
 export class TimeComponent extends LitElement {
@@ -28,7 +32,7 @@ export class TimeComponent extends LitElement {
         return html`
             <section class="time--container general--container card--container d-flexx d-col">
                 <div class="top--card item--card d-flexx d-row">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+                    ${unsafeHTML(iconos.reloj)}
                     <p class="cutive-mono-regular">Tiempo</p>
                 </div>
                 <div class="middle--card item--card d-flexx d-col">
