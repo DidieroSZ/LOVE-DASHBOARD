@@ -202,3 +202,74 @@
             .modal-btn:hover{
                 background-color: var(--Gris);
             }
+
+
+
+
+/* ---------- Extra-small Screens ---------- */
+@media screen and (max-width: 501px){
+    :host{
+    --Pad01: 0.5rem;
+    --Pad02: 2rem;
+    --Pad03: 3rem;
+}
+    .general--section{
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        position: relative;
+    }
+    .main--container{
+        padding: 0;
+        height: auto;
+        
+    }
+        .template--container--grid{
+            width: 100%;
+            min-width: auto;
+            height: auto;
+            min-height: 100vh;
+            aspect-ratio: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto;
+            gap: var(--Pad01);
+        }
+        .template--container--grid > [class^="grid"] {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .grid--time,
+        .grid--chart,
+        .grid--message,
+        .grid--calendar,
+        .grid--music {
+            grid-column: auto;
+            grid-row: auto;
+        }
+        .grid--time,
+        .grid--chart{
+            height: fit-content;
+            min-height: 25vh;
+        }
+        .grid--time{
+            height: fit-content;
+            min-height: 15vh;
+        }
+}
+
+/* ---------- Extra-small Screens ---------- */
+
+
+/* ---------- Small Screens ---------- */
+/* ---------- Small Screens ---------- */
+
+
+/* ---------- Medium Screens ---------- */
+/* ---------- Medium Screens ---------- */
+
+
+/* ---------- Large Screens ---------- */
+/* ---------- Large Screens ---------- */

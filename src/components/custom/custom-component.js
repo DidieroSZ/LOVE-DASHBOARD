@@ -55,6 +55,7 @@ export class CustomComponent extends LitElement {
         }
     }
 
+    
     /* -------- FUNCTIONS MODAL -------- */
     _closeModal(){
         this.mostrar = false;
