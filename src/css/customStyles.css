@@ -151,3 +151,18 @@
             .btn--link{
 
             }
+
+/* ---------- Extra-small Screens ---------- */
+@media screen and (max-width: 501px){
+    .modal--container{
+        width: 100%;
+        min-width: auto;
+        height: 100vh;
+        aspect-ratio: 1/1;
+        background-color: var(--Blanco);
+        padding: 0;
+        overflow: hidden;
+        border-radius: var(--Pad01);
+    }
+}
+/* ---------- Extra-small Screens ---------- */

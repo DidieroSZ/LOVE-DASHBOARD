@@ -48,7 +48,7 @@
     }
             .middle--card > .cuenta--container{
                 width: 100%;
-                justify-content: start;
+                justify-content: center;
                 align-items: baseline;
             }
                 .middle--card p.cuenta--number{

@@ -67,7 +67,6 @@ export class CustomComponent extends LitElement {
         );
         
     }
-
     _verificationData(){
         const inputs = this.renderRoot.querySelectorAll('.input--modal');
         let veri = true;
@@ -131,11 +130,20 @@ export class CustomComponent extends LitElement {
                 let ar2 = s.split('?');
                 v = ar2[0];
             }
-
-            this.datos[n] = v;
-            console.log(this.datos);
+            // Llenar Objeto con datos.
+            this._fillData(n, v);            
         });
-        
+        this._closeModal();
+        this.dispatchEvent(
+            new CustomEvent('fill-data', {
+                bubbles: true,
+                composed: true,
+                detail: { datos: this.datos },
+            })
+        );
+    }
+    _fillData(n, v){
+        this.datos[n] = v;
     }
     /* -------- FUNCTIONS INFORAMTION -------- */
 
