@@ -39,6 +39,10 @@ export class MainComponent extends LitElement {
         css` ${unsafeCSS(generalStyles)}`,
     ];
 
+    firstUpdated(){
+        this._linkGeneration();
+    }
+
     render(){
         return html`
             <main class="general--section main--container d-flexx">
@@ -67,6 +71,19 @@ export class MainComponent extends LitElement {
         this.mostrar = false;
     }
     /* -------- FUNCTIONS MODAL -------- */
+
+
+    /* -------- FUNCTIONS LINKS -------- */
+    _linkGeneration(){
+        const url = new URL(window.location.href);
+        const params = Object.fromEntries(new URLSearchParams(window.location.search));
+        console.log(params);
+        if ( (Object.keys(params).length) !== 0) {
+            this.datos = { ...params };
+        }
+    }
+    
+    /* -------- FUNCTIONS LINKS -------- */
 
 
     /* -------- FUNCTIONS INFORAMTION -------- */

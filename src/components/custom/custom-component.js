@@ -10,6 +10,7 @@ export class CustomComponent extends LitElement {
 
     static properties = {
         dias: { type: Number },
+        mensaje: { type: String },
         mostrar: { type: Boolean },
         datos: { type: Object}
     };
@@ -17,6 +18,7 @@ export class CustomComponent extends LitElement {
     constructor(){
         super();
         this.dias = 0;
+        this.mensaje = '';
         this.mostrar = false;
         this.datos = {
             she: '',
@@ -39,7 +41,8 @@ export class CustomComponent extends LitElement {
                 <div class="custom--container general--container d-flexx d-col">
                     <div class="alert--modal d-flexx">
                         ${unsafeHTML(iconos.alert)}
-                        Verifica los datos ingresado, puedo haber alguno faltante o erroneo. 
+                        ${this.mensaje}
+                       
                     </div>
                     <div class="modal--container card--container d-flexx d-col">
                         <div class="top--card item--card d-flexx d-row">
@@ -55,7 +58,90 @@ export class CustomComponent extends LitElement {
         }
     }
 
+
+    /* -------- FUNCTIONS DATA INFORMATION -------- */
+    _verificationData(){
+        const inputs = this.renderRoot.querySelectorAll('.input--modal');
+        let errorInformation = true;
+        let datosTemp = {};
+
+        inputs.forEach(i => {
+            let n = i.id;
+            let v = i.value;
+
+            if ( v == '' || v == null || v == undefined ) {
+                errorInformation = false;
+            }
+            else{
+                if (n == 'link') {
+                    if (!this._linkVerification(v)) {
+                        errorInformation = false;
+                    }
+                }
+            }
+            if (errorInformation) {
+                v = this._formatData(n, v);
+                datosTemp[n] = v;
+            }
+        });
+
+        this._alertModal(errorInformation);
+
+        if (errorInformation) {
+            this.datos = datosTemp;
+            this._linkGeneration();
+            
+            
+            /* this._eventGenerator('fill-data'); */
+        }
+    }
+    _linkVerification(v){
+        let pr1 = v.includes("https://open.spotify.com/");
+        let pr2 = v.includes("track/");
+        
+        if (pr1 && pr2) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }   
+    _formatData(n, v){
+        let valor = v;
+        valor = valor.trim();
+        if (n !== 'fecha' && n !== 'link' ) {
+            valor = valor.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ,!¡¿? ]/g, "");
+        }
+        if (n == 'she' || n == 'he' ) {
+            valor = valor.replace(/[0-9]/g, "");
+        }
+        if (n == 'link') {
+            let ar1 = valor.split('/');
+            let s = ar1[ar1.length - 1];
+            let ar2 = s.split('?');
+            valor = ar2[0];
+        }
+        return valor;
+    }    
+    /* -------- FUNCTIONS DATA INFORMATION -------- */
+
+
+    /* -------- FUNCTIONS LINKS -------- */
+    _linkGeneration(){
+        const url = new URL(window.location.href);
+        url.searchParams.append('she', this.datos.she);
+        url.searchParams.append('he', this.datos.he);
+        url.searchParams.append('link', this.datos.link);
+        url.searchParams.append('frase1', this.datos.frase1);
+        url.searchParams.append('frase2', this.datos.frase2);
+        url.searchParams.append('fecha', this.datos.fecha);
+        navigator.clipboard.writeText(url)
+        window.location = url;
+    }
     
+    /* -------- FUNCTIONS LINKS -------- */
+
+
     /* -------- FUNCTIONS MODAL -------- */
     _closeModal(){
         this.mostrar = false;
@@ -67,85 +153,51 @@ export class CustomComponent extends LitElement {
         );
         
     }
-    _verificationData(){
-        const inputs = this.renderRoot.querySelectorAll('.input--modal');
-        let veri = true;
-
-        inputs.forEach(i => {
-            let n = i.id;
-            let v = i.value;
-            if (v == '' || v == null || v == undefined ) {
-                veri = false;
-            }
-            else{
-                if (n == 'link') {
-                    let pr1 = v.includes("https://open.spotify.com/");
-                    let pr2 = v.includes("track/");
-                    console.log(v);
-                    if (pr1 && pr2) {
-                    }
-                    else{
-                        veri = false;
-                    }
-                }
-            }
-        });
-        this._alertModal(veri);
-    }
     _alertModal(v){
-        if (!v) {
-            const alert = this.renderRoot.querySelector('.alert--modal');
-            alert.style.top = '1rem';
-            alert.style.opacity = '1';
+        const alert = this.renderRoot.querySelector('.alert--modal');
+        alert.style.top = '1rem';
+        alert.style.opacity = '1';
+        alert.classList.remove('error--alert');
+        alert.classList.remove('succes--alert');
 
+        setTimeout(() => {
+            alert.style.top = '-100px';
+            alert.style.opacity = '0';
+        }, 3000);
+
+        if (v) {
+            alert.classList.add('succes--alert');
+            this.mensaje = 'Información Guardada, enlace copiado al portapapeles.';
             setTimeout(() => {
-                alert.style.top = '-100px';
-                alert.style.opacity = '0';
+                this._closeModal();
             }, 5000);
         }
         else{
-            this._formatData();
+            alert.classList.add('error--alert');
+            this.mensaje = 'Verifica los datos ingresado, puedo haber alguno faltante o erroneo.'
         }
     }
     /* -------- FUNCTIONS MODAL -------- */
 
 
-    /* -------- FUNCTIONS INFORAMTION -------- */
-    _formatData(){
-        const inputs = this.renderRoot.querySelectorAll('.input--modal');
-        inputs.forEach(i => {
-            let n = i.id;
-            let v = i.value;
-
-            v = v.trim();
-            if (n !== 'fecha' && n !== 'link' ) {
-                v = v.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ,!¡¿? ]/g, "");
-            }
-            if (n == 'she' || n == 'he' ) {
-                v = v.replace(/[0-9]/g, "");
-            }
-            if (n == 'link') {
-                let ar1 = v.split('/');
-                let s = ar1[ar1.length - 1];
-                let ar2 = s.split('?');
-                v = ar2[0];
-            }
-            // Llenar Objeto con datos.
-            this._fillData(n, v);            
-        });
-        this._closeModal();
-        this.dispatchEvent(
-            new CustomEvent('fill-data', {
-                bubbles: true,
-                composed: true,
-                detail: { datos: this.datos },
-            })
-        );
+    /* -------- FUNCTIONS EVENTS -------- */
+    _eventGenerator(v){
+        switch (v) {
+            case 'fill-data':
+                this.dispatchEvent(
+                    new CustomEvent('fill-data', {
+                        bubbles: true,
+                        composed: true,
+                        detail: { datos: this.datos },
+                    })
+                );
+            break;
+        
+            default:
+                break;
+        }
     }
-    _fillData(n, v){
-        this.datos[n] = v;
-    }
-    /* -------- FUNCTIONS INFORAMTION -------- */
+    /* -------- FUNCTIONS EVENTS -------- */
 
 
     /* -------- FUNCTIONS RENDER MODAL -------- */
@@ -184,10 +236,7 @@ export class CustomComponent extends LitElement {
             Guardar
             ${unsafeHTML(iconos.save)}
           </button>
-          <button class="btn--general d-flexx btn--link">
-            Generar Link
-            ${unsafeHTML(iconos.link)}
-          </button>
+          
         `;
     }
     /* -------- FUNCTIONS RENDER MODAL -------- */
