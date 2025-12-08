@@ -26,12 +26,12 @@ export class MainComponent extends LitElement {
         this.valor = 0;
         this.mostrar = false;
         this.datos = {
-            she: '',
-            he: '',
-            frase1: '',
-            frase2: '',
+            she: 'Mariana',
+            he: 'Didier',
+            frase1: 'Espero estár siempre contigo, toda la vida',
+            frase2: '¿Crees qué estariamos juntos en tooodos los universos?',
             link: '',
-            fecha: ''
+            fecha: '2023-10-10'
         }
     }
 
@@ -50,8 +50,8 @@ export class MainComponent extends LitElement {
                 <section class="template--container--grid">
                     <time-component .she=${this.datos.she} .he=${this.datos.he} .fecha=${this.datos.fecha} class="grid--time"></time-component>    
                     <chart-component class="grid--chart"></chart-component>    
-                    <message-component class="grid--message"></message-component>
-                    <calendar-component class="grid--calendar"></calendar-component>
+                    <message-component .frase1=${this.datos.frase1} .fecha=${this.datos.fecha} .nombre=${this.datos.he} class="grid--message"></message-component>
+                    <calendar-component .frase2=${this.datos.frase2} .fecha=${this.datos.fecha} class="grid--calendar"></calendar-component>
                     <music-component .track=${this.datos.link} class="grid--music"></music-component>   
                     <button class="modal-btn d-flexx" @click=${this._openModal} title="Configuración">
                         ${unsafeHTML(iconos.bolt)}
@@ -77,12 +77,10 @@ export class MainComponent extends LitElement {
     _linkGeneration(){
         const url = new URL(window.location.href);
         const params = Object.fromEntries(new URLSearchParams(window.location.search));
-        console.log(params);
         if ( (Object.keys(params).length) !== 0) {
             this.datos = { ...params };
         }
     }
-    
     /* -------- FUNCTIONS LINKS -------- */
 
 

@@ -38,8 +38,5 @@ export class MusicComponent extends LitElement {
     _formatTrack(){
         this.track = '6ohTBTmcNHe9UzvxAgA9wJ';
     }
-/*     https://open.spotify.com/intl-es/track/06lMtTSCrAp09coLvGznXw?si=3e0d60f8052f4ba8
-    https://open.spotify.com/intl-es/track/6Ipu4lyn6EdMutvBCTktmL?si=fdef50d5286f4ef2 */
-
 }
 customElements.define('music-component', MusicComponent);
