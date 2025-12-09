@@ -74,7 +74,7 @@ export class MessageComponent extends LitElement {
             mes = '0' + mes;
         }
         let formatDate =  `${fecha.getDate()+1}/${mes} <br> ${fecha.getFullYear()}`;
-        console.log(formatDate);
+        
         return html`
             ${unsafeHTML(formatDate)}
         `;

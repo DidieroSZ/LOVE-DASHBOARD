@@ -90,9 +90,6 @@ export class CustomComponent extends LitElement {
         if (errorInformation) {
             this.datos = datosTemp;
             this._linkGeneration();
-            
-            
-            /* this._eventGenerator('fill-data'); */
         }
     }
     _linkVerification(v){
@@ -129,16 +126,31 @@ export class CustomComponent extends LitElement {
     /* -------- FUNCTIONS LINKS -------- */
     _linkGeneration(){
         const url = new URL(window.location.href);
-        url.searchParams.append('she', this.datos.she);
-        url.searchParams.append('he', this.datos.he);
-        url.searchParams.append('link', this.datos.link);
-        url.searchParams.append('frase1', this.datos.frase1);
-        url.searchParams.append('frase2', this.datos.frase2);
-        url.searchParams.append('fecha', this.datos.fecha);
-        navigator.clipboard.writeText(url)
-        window.location = url;
+        const paramsUrl = this._paramsSet(url);
+        navigator.clipboard.writeText(paramsUrl);
+        setTimeout(() => {
+            window.location = paramsUrl;
+        }, 5000);        
     }
-    
+    _validationLink(){
+        const params = new URLSearchParams(window.location.search);
+        let validation = false;
+        const vars = Object.keys( this.datos );
+        vars.forEach(el => {
+            validation = params.has(el);
+        });
+
+        return validation;
+    }
+    _paramsSet(url){
+        url.searchParams.set('she', this.datos.she);
+        url.searchParams.set('he', this.datos.he);
+        url.searchParams.set('link', this.datos.link);
+        url.searchParams.set('frase1', this.datos.frase1);
+        url.searchParams.set('frase2', this.datos.frase2);
+        url.searchParams.set('fecha', this.datos.fecha);
+        return url;
+    }
     /* -------- FUNCTIONS LINKS -------- */
 
 

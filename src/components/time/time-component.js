@@ -41,12 +41,6 @@ export class TimeComponent extends LitElement {
         this._startData();
     }
 
-    updated(changedProps) {
-        if (changedProps.has('she') || changedProps.has('he') || changedProps.has('fecha')) {
-            this._startData();
-        }
-    }
-
     render(){
         return html`
             <section class="time--container general--container card--container d-flexx d-col">
@@ -68,6 +62,12 @@ export class TimeComponent extends LitElement {
                 </div>
             </section>
         `;
+    }
+
+    updated(changedProps) {
+        if (changedProps.has('she') || changedProps.has('he') || changedProps.has('fecha')) {
+            this._startData();
+        }
     }
 
     _startData(){
