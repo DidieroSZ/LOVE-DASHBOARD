@@ -1,42 +1,79 @@
-.red--hand--text{
-    color: var(--Rojo);
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
 .time--container{
     border-radius: var(--Pad01);
     background-color: var(--Blanco);
+    
 }
-    .time--container > .circle--icon{
-        position: absolute;
-        top: var(--Pad01);
-        left: var(--Pad01);
-    }
-    .number--container{
+.card--container{
+    padding: 0;
+    background-color: var(--Blanco);
+    border-radius: var(--Pad01);
+    justify-content: start  ;
+}
+    .item--card{
         width: 100%;
-        min-height: 50%; 
+        flex-grow: 1;
+        padding-inline: var(--Pad01);
+        justify-content: start;
     }
-        .number--container > *{
-            text-align: center;
-        }
-        .counter{
-            align-items: baseline;
-            gap: 0.5rem;
-        }
-            .counter > p{
-                font-size: 3rem;
-                text-align: center;
-                align-items: end;
-            }
-            .counter > small{
-                font-size: 0.8rem;
-                font-weight: bold;
-            }
-        .number--container > p{
-            width: 100%;
-            text-transform: capitalize;
-            font-size: 2rem;
+        .item--card > p, small{
+            color: var(--Negro);
             font-weight: bold;
+            font-size: 0.8rem;
         }
+        .item--card > small{
+            opacity: 0.5;
+        }
+    .top--card{
+        height: 10%;
+        max-height: 15%;
+        overflow: hidden;
+        background-color: var(--Gris2);
+        border: solid 1px var(--Gris);
+        gap: 0.5rem;
+    }
+        .top--card > svg{
+            width: auto;
+            height: 1rem;
+            aspect-ratio: 1/1;
+        }
+
+    .middle--card{
+        height: fit-content;
+        max-height: 70%;
+        border-bottom: solid 1px var(--Gris);
+        padding: var(--Pad01) ;
+        align-items: start;
+        flex-wrap: nowrap;
+        flex-grow: 0;
+    }
+            .middle--card > .cuenta--container{
+                width: 100%;
+                justify-content: center;
+                align-items: baseline;
+            }
+                .middle--card p.cuenta--number{
+                    font-size: 3rem;
+                    text-align: center;
+                    
+                }
+                .middle--card small.cuenta--label{
+                    font-size: 0.8rem;
+                    font-weight: bold;
+                    
+                }
+                .middle--card p.cuenta--texto{
+                    /* width: 100%; */
+                    color: var(--Rojo);
+                    text-align: center;
+                    text-transform: capitalize;
+                    font-weight: bold;
+                    font-size: 2rem;
+                    flex-grow: 1;
+                }
+    .bottom--card{
+        padding: calc(var(--Pad01) / 2) var(--Pad01) ;
+        flex-grow: 1;
+        justify-content: end;
+        align-items: start;
+        gap: 0;
+    }

@@ -21,7 +21,7 @@
         left: var(--left);
         width: 100%;
         height: calc(var(--circle-size) + var(--pattern-height));
-        background: radial-gradient(circle, var(--Gris) 50%, transparent 51%) repeat-x;
+        background: radial-gradient(circle, #00071c 50%, transparent 51%) repeat-x;
         background-size: calc(var(--circle-size) + var(--gap)) calc(var(--circle-size) + var(--gap));
     }
     .scalloped::after {
@@ -31,7 +31,7 @@
         left: var(--left);
         width: 100%;
         height: calc(var(--circle-size) + var(--pattern-height));
-        background: radial-gradient(circle, var(--Gris) 50%, transparent 51%) repeat-x;
+        background: radial-gradient(circle, #00071c 50%, transparent 51%) repeat-x;
         background-size: calc(var(--circle-size) + var(--gap)) calc(var(--circle-size) + var(--gap));
     }
 
@@ -93,19 +93,19 @@
             font-size: 1.2rem;
             margin: 0;
         }
-        .calendar--table td[data-day="10"]{ 
+        #aniversary--day--calendar{ 
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-            .calendar--table td[data-day="10"] > p{
+            #aniversary--day--calendar > p{
                 width: fit-content;
                 position: relative;
                 color: var(--Blanco);
                 z-index: 5;
             }
-            .calendar--table td[data-day="10"]::before{
+            #aniversary--day--calendar::before{
                 content: "❤"; 
                 transform: translate(-50%, -50%);
                 position: absolute;

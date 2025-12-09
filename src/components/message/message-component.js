@@ -4,18 +4,20 @@ import messageStyles from '../../css/messageStyles.css?inline';
 import { unsafeCSS } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
-import { animate } from 'https://esm.sh/animejs';
-
 
 export class MessageComponent extends LitElement {
 
     static properties = {
-        frase: { type: String },
+        frase1: { type: String },
+        fecha: { type: String },
+        nombre: { type: String },
     };
 
     constructor(){
         super();
-        this.frase = "";
+        this.frase1 = "Desde que llegaste mi vida es un lugar mejor.";
+        this.fecha = "2023-10-10";
+        this.nombre = "Didier";
     }
 
     static styles = [
@@ -24,7 +26,7 @@ export class MessageComponent extends LitElement {
     ];
 
     firstUpdated(){
-        /* this._animarTexto(); */
+
     }
 
     render(){
@@ -35,14 +37,14 @@ export class MessageComponent extends LitElement {
                         <p class="cutive-mono-regular red--hand--text">Para: <br> La persona más especial.</p>
                     </div>
                     <div class="equal--space middle--section d-flexx">
-                       <p class="cutive-mono-regular red--hand--text" id="name--message">DE: <br> <span  class="parisienne-regular red--hand--text">Didier.</span></p>
+                       <p class="cutive-mono-regular red--hand--text" id="name--message">DE: <br> <span  class="parisienne-regular red--hand--text">${this.nombre}.</span></p>
                     </div>
                     <div class="equal--space d-flexx">
-                       <p class="cutive-mono-regular red--hand--text"> <span class="parisienne-regular red--hand--text">10/10 <br>2023 </span></p>
+                       <p class="cutive-mono-regular red--hand--text"> <span class="parisienne-regular red--hand--text"> ${this._generateDate()}</span></p>
                     </div>
                 </div>
                 <article class="message--section d-flexx">
-                    <p class="main--message tinos-regular">${this._generateHandFont()}</p>
+                    <p class="main--message tinos-regular">${this._generateHandFont()}.</p>
                     
                     <p class="footer--message parisienne-regular red--hand--text">Love Note.</p>
                 </article>
@@ -51,20 +53,8 @@ export class MessageComponent extends LitElement {
     }
 
 
-   /*  _animarTexto() {
-        const nameWord = this.shadowRoot.querySelector('#name--message');
-        animate(nameWord    , {
-            left: '0px',
-            borderRadius: 64,
-            'background-color': '#ffffffff',
-            filter: 'blur(5px)',
-        });
-        console.log('REALIZADO. ')
-    } */
-
     _generateHandFont(){
-        this.frase = "Soy mucho más yo cuando estoy contigo.";
-        const splitSentence = this.frase.split(' ');
+        const splitSentence = this.frase1.split(' ');
         const longitud = splitSentence.length;
         const mitad = Math.floor(longitud / 2);
 
@@ -74,10 +64,20 @@ export class MessageComponent extends LitElement {
         const finalSentence = splitSentence.join(' ');  
         return html`
             ${unsafeHTML(finalSentence)}
-      
         `;
     }
 
-    
+    _generateDate(){
+        const fecha = new Date(this.fecha);
+        let mes = fecha.getMonth()+1;
+        if (mes < 10) {
+            mes = '0' + mes;
+        }
+        let formatDate =  `${fecha.getDate()+1}/${mes} <br> ${fecha.getFullYear()}`;
+        
+        return html`
+            ${unsafeHTML(formatDate)}
+        `;
+    }
 }
 customElements.define('message-component', MessageComponent);

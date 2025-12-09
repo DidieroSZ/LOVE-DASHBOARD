@@ -25,7 +25,11 @@
     --Negro: #14080E;
     --Blanco: #fff;
     --Gris: #CED3DC;
+    --Gris2: #f4f5f9;
     --Rojo: #ff0000;
+    --Rojo2: #f1aeb5;
+    --Verde: #0a3622;
+    --Verde2: #d1e7dd;
     --Ginda: #5A0E24;
     --Rosa: #76153C;
     --Cafe: #51331b;
@@ -111,10 +115,33 @@
 .main--container{
     background-color: var(--Gris);
     padding: var(--Pad02);
-/* 
+    background: url(../media/neat.png);
+    background-size: cover;    
+    position: relative;
+    /* 
     background-color: #d20062;
-    background-image: radial-gradient(at 60% 84%, #d20062 0%, transparent 60%), radial-gradient(at 2% 97%, #d6589f 0%, transparent 50%), radial-gradient(at 8% 91%, #d895da 0%, transparent 40%), radial-gradient(at 31% 68%, #c4e4ff 0%, transparent 30%); */
+    background-image: 
+    radial-gradient(at 60% 84%, #d20062 0%, transparent 60%), 
+    radial-gradient(at 2% 97%, #d6589f 0%, transparent 50%),
+    radial-gradient(at 8% 91%, #d895da 0%, transparent 40%), 
+    radial-gradient(at 31% 68%, #c4e4ff 0%, transparent 30%); 
+    */
 }
+    .decorations{
+        width: 5rem;
+        height: auto;
+        position: absolute;
+        overflow: hidden;
+        top: 100px;
+        left: 600px;
+        z-index: 2;
+    }
+        .decorations > img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
     .template--container--grid{
         width: auto;
         min-width: 700px;
@@ -126,6 +153,7 @@
         grid-template-rows: repeat(3, 1fr);
         gap: var(--Pad01);
         padding: var(--Pad01);
+        position: relative;
     }   
         .template--container--grid > [class^="grid"] {
             width: 100%;
@@ -143,7 +171,7 @@
         }
         .grid--message{
             grid-column: 1 / 3;
-            grid-row: 2 / 5;    
+            grid-row: 2 / 4;    
         }
         .grid--calendar{
             grid-column: 3 / 5;
@@ -152,12 +180,136 @@
         .grid--music{
             grid-column: 3 / 5;
             grid-row: 3 / 4;
-            background-color: #b3b3b3;
         }
-
         .general--container{
-             width: 100%;
+            width: 100%;
             height: 100%;
             padding: var(--Pad01);
             overflow: hidden;
         }
+
+        .modal-btn{
+            position: absolute;
+            top: var(--Pad01);
+            left: -3rem;
+            width: 3rem;
+            height: auto;
+            background-color: var(--Blanco);
+            aspect-ratio: 1/1;
+            border-radius: var(--Pad01);
+            border: none;
+            color: var(--Negro);
+            cursor: pointer;
+        }
+            .modal-btn:hover{
+                background-color: var(--Gris);
+            }
+
+
+
+
+/* ---------- Extra-small Screens ---------- */
+@media screen and (max-width: 501px){
+    :host{
+    --Pad01: 0.5rem;
+    --Pad02: 1rem;
+    --Pad03: 3rem;
+}
+    .general--section{
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        position: relative;
+    }
+    .main--container{
+        padding: 0;
+        height: auto;
+        
+    }
+        .template--container--grid{
+            width: 100%;
+            min-width: auto;
+            height: fit-content;
+            min-height: 100vh;
+            aspect-ratio: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto;
+            gap: var(--Pad02);
+            padding: var(--Pad02);
+
+        }
+        .template--container--grid > [class^="grid"] {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .grid--time,
+        .grid--chart,
+        .grid--message,
+        .grid--calendar,
+        .grid--music {
+            grid-column: auto;
+            grid-row: auto;
+            height: fit-content;
+            min-height: 25vh;
+        }
+        .grid--time,
+        .grid--chart{
+            height: fit-content;
+        }
+        .grid--time{
+            order: 2;
+        }
+        .grid--chart{
+            order: 3;
+        }
+        .grid--message{
+            order: 5;
+        }
+        .grid--calendar{
+            order: 1;
+        }
+        .grid--music {
+            order: 4;
+            grid-column: 1 / span 2;
+            min-height: 40vh;
+        }
+        .grid--message,.grid--calendar{
+            grid-column: 1 / span 2;
+            min-height: 52vh;
+        }
+        .modal-btn{
+            position: fixed;
+            top: var(--Pad02);
+            left: auto;
+            right: var(--Pad02);
+            width: 2rem;
+            height: auto;
+            aspect-ratio: 1/1;
+            border: solid 1px var(--Negro);
+            z-index: 2;
+        }
+            .modal-btn > svg{
+                width: 1rem;
+                aspect-ratio: 1/1;
+            }
+            .modal-btn:hover{
+                background-color: var(--Gris);
+            }
+}
+
+/* ---------- Extra-small Screens ---------- */
+
+
+/* ---------- Small Screens ---------- */
+/* ---------- Small Screens ---------- */
+
+
+/* ---------- Medium Screens ---------- */
+/* ---------- Medium Screens ---------- */
+
+
+/* ---------- Large Screens ---------- */
+/* ---------- Large Screens ---------- */

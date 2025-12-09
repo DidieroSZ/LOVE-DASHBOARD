@@ -7,11 +7,15 @@ export class CalendarComponent extends LitElement {
 
     static properties = {
         valor: { type: Number },
+        fecha: { type: String },
+        frase2: { type: String },
     };
 
     constructor(){
         super();
         this.valor = 0;
+        this.fecha = '2023-10-10';
+        this.frase2 = '¿Crees qué estariamos juntos en tooodos los universos?';
     }
 
     static styles = [
@@ -25,7 +29,7 @@ export class CalendarComponent extends LitElement {
 
     render(){
         return html`
-            <div class="calendar--container general--container scalloped d-flexx d-col">
+            <section class="calendar--container general--container scalloped d-flexx d-col">
                 <div class="top--calendar--section d-flexx d-col">
                     <p class="neutral--date shadows-into-light-regular">20/11/2025</p>
                     <h4 class="month--date fredericka-the-great-regular">Noviembre.</h4>
@@ -49,9 +53,9 @@ export class CalendarComponent extends LitElement {
                     </table>
                 </div>
                 <div class="bottom--calendar--section">
-                    <p class="shadows-into-light-regular">¿Crees qué estariamos juntos en tooodos los universos?</p>
+                    <p class="shadows-into-light-regular">${this.frase2}</p>
                 </div>
-            </div>  
+            </section>  
         `;
     }
 
@@ -82,13 +86,14 @@ export class CalendarComponent extends LitElement {
 
     _calendarDays() {
         const realDay = new Date().getDate();
+        const aniversaryDay = new Date(this.fecha).getDate() +1;
+
         const year =  new Date().getFullYear();
         const month = new Date().getMonth();
        
         const firstDay = new Date(year, month, 1).getDay();
         const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-        
         let weeks = []; 
         let currentDay = 1;
 
@@ -118,14 +123,21 @@ export class CalendarComponent extends LitElement {
                             if (day == realDay) {
                                 return html`
                                     <td data-day="${day}" id="today--day--calendar">
-                                    <p>${day}</p> 
+                                        <p>${day}</p> 
+                                    </td>
+                                `
+                            }
+                            if (day == aniversaryDay) {
+                                return html`
+                                    <td data-day="${day}" id="aniversary--day--calendar">
+                                        <p>${day}</p> 
                                     </td>
                                 `
                             }
                             else{
                                return html`
                                     <td data-day="${day}">
-                                    <p>${day}</p> 
+                                        <p>${day}</p> 
                                     </td>
                                 ` 
                             }
