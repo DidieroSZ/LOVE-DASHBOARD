@@ -46,7 +46,7 @@ export class ChartComponent extends LitElement {
                     <span class="pill--graph d-flexx pill01">Amor</span>
                     <span class="pill--graph d-flexx pill02">Conexión</span>
                     <span class="pill--graph d-flexx pill03">Tóxicidad</span>
-                    <span class="pill--graph d-flexx pill04">Felicidad</span>
+                    <span class="pill--graph d-flexx pill04">Seriedad</span>
                 </div>
             </section>
         `;

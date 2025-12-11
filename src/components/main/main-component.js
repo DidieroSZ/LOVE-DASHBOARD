@@ -58,7 +58,7 @@ export class MainComponent extends LitElement {
                     </button> 
                 </section>
                 
-                <custom-component  @fill-data=${this._fillData} @close-modal=${this._closeModal} .mostrar=${this.mostrar}></custom-component>
+                <custom-component @close-modal=${this._closeModal} .mostrar=${this.mostrar}></custom-component>
             </main>
         `;
     }    
@@ -83,11 +83,5 @@ export class MainComponent extends LitElement {
     }
     /* -------- FUNCTIONS LINKS -------- */
 
-
-    /* -------- FUNCTIONS INFORAMTION -------- */
-    _fillData(e){
-        this.datos = { ...e.detail.datos };
-    }
-    /* -------- FUNCTIONS INFORAMTION -------- */
 }
 customElements.define('main-component', MainComponent);

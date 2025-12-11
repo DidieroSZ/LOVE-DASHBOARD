@@ -35,6 +35,15 @@ export class CustomComponent extends LitElement {
         css` ${unsafeCSS(customStyles)}`,
     ];
 
+    updated(changedProps) {
+        if (changedProps.has('mostrar')) {
+            if ( this.mostrar == true) {
+                this._fillDataModal();
+            }
+            
+        }
+    }
+
     render(){
         if (this.mostrar) {
             return html`
@@ -51,6 +60,7 @@ export class CustomComponent extends LitElement {
                         </div>
                         <div class="middle--card item--card d-flexx d-row">
                             ${this._renderInputs()}
+
                         </div>
                     </div>
                 </div>
@@ -74,7 +84,7 @@ export class CustomComponent extends LitElement {
             }
             else{
                 if (n == 'link') {
-                    if (!this._linkVerification(v)) {
+                    if (!this._spotifyLinkVerification(v)) {
                         errorInformation = false;
                     }
                 }
@@ -92,7 +102,7 @@ export class CustomComponent extends LitElement {
             this._linkGeneration();
         }
     }
-    _linkVerification(v){
+    _spotifyLinkVerification(v){
         let pr1 = v.includes("https://open.spotify.com/");
         let pr2 = v.includes("track/");
         
@@ -126,21 +136,12 @@ export class CustomComponent extends LitElement {
     /* -------- FUNCTIONS LINKS -------- */
     _linkGeneration(){
         const url = new URL(window.location.href);
+        
         const paramsUrl = this._paramsSet(url);
         navigator.clipboard.writeText(paramsUrl);
         setTimeout(() => {
             window.location = paramsUrl;
         }, 5000);        
-    }
-    _validationLink(){
-        const params = new URLSearchParams(window.location.search);
-        let validation = false;
-        const vars = Object.keys( this.datos );
-        vars.forEach(el => {
-            validation = params.has(el);
-        });
-
-        return validation;
     }
     _paramsSet(url){
         url.searchParams.set('she', this.datos.she);
@@ -155,6 +156,35 @@ export class CustomComponent extends LitElement {
 
 
     /* -------- FUNCTIONS MODAL -------- */
+    _fillDataModal(){
+        const inputs = this.renderRoot.querySelectorAll('.input--modal');
+        const url = new URL(window.location.href);
+        const keysData = Object.keys( this.datos );
+        const params = new URLSearchParams(window.location.search);
+
+        console.log(inputs);
+        inputs.forEach((input) => {
+            let nameInput = input.id;
+            let valueInput = input.value;
+            
+            for (let i = 0; i < keysData.length; i++) {
+                let paramName = keysData[i];
+                if (nameInput == paramName) {
+                    if (paramName == 'link' && nameInput == 'link') {
+                        let val = url.searchParams.get(keysData[i]);
+                        input.value = `https://open.spotify.com/embed/track/${val}?utm_source=generator`;
+                    }
+                    else{
+                        input.value = url.searchParams.get(keysData[i]);
+                    }
+                }
+
+            }
+
+        });
+        
+        
+    }
     _closeModal(){
         this.mostrar = false;
         this.dispatchEvent(
@@ -179,7 +209,7 @@ export class CustomComponent extends LitElement {
 
         if (v) {
             alert.classList.add('succes--alert');
-            this.mensaje = 'Información Guardada, enlace copiado al portapapeles.';
+            this.mensaje = 'Información Guardada, redireccionando...';
             setTimeout(() => {
                 this._closeModal();
             }, 5000);
@@ -192,28 +222,9 @@ export class CustomComponent extends LitElement {
     /* -------- FUNCTIONS MODAL -------- */
 
 
-    /* -------- FUNCTIONS EVENTS -------- */
-    _eventGenerator(v){
-        switch (v) {
-            case 'fill-data':
-                this.dispatchEvent(
-                    new CustomEvent('fill-data', {
-                        bubbles: true,
-                        composed: true,
-                        detail: { datos: this.datos },
-                    })
-                );
-            break;
-        
-            default:
-                break;
-        }
-    }
-    /* -------- FUNCTIONS EVENTS -------- */
-
-
     /* -------- FUNCTIONS RENDER MODAL -------- */
     _renderInputs(){
+        
         return html`
           <small class="">Campos personalizables:</small>
           <div class="input--container d-flexx d-col">
@@ -250,6 +261,7 @@ export class CustomComponent extends LitElement {
           </button>
           
         `;
+        
     }
     /* -------- FUNCTIONS RENDER MODAL -------- */
 }

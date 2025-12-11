@@ -28,7 +28,7 @@
         transition: all 0.5s ease-out;
     }
     .error--alert{
-        border: solid 1px var(--Rojo);
+        border: solid 2px var(--Ginda);
         color: var(--Ginda);
         background-color: var(--Rojo2);
     }
@@ -36,7 +36,7 @@
             stroke: var(--Ginda);   
         }
     .succes--alert{
-        border: solid 1px var(--Verde);
+        border: solid 2px var(--Verde);
         color: var(--Verde);
         background-color: var(--Verde2);
     }

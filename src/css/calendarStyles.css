@@ -93,52 +93,41 @@
             font-size: 1.2rem;
             margin: 0;
         }
-        #aniversary--day--calendar{ 
+        #aniversary--day--calendar, #today--day--calendar{ 
             position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
-            #aniversary--day--calendar > p{
+            #aniversary--day--calendar > p, #today--day--calendar > p{
                 width: fit-content;
                 position: relative;
-                color: var(--Blanco);
                 z-index: 5;
+                text-align: center;
+                margin: 0 auto;
             }
-            #aniversary--day--calendar::before{
-                content: "❤"; 
+            #aniversary--day--calendar > p{
+                color: var(--Blanco);
+            }
+            #aniversary--day--calendar::before, #today--day--calendar::before{
                 transform: translate(-50%, -50%);
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                color: var(--Rojo);
-                font-size: 2rem;
                 z-index: 1;
-            }
-            
-            #today--day--calendar{
-                position: relative;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            #today--day--calendar > p{
-                width: fit-content;
-                position: relative;
-                z-index: 5;
-            }
+            }   
+                
+                #aniversary--day--calendar::before{
+                    content: "❤"; 
+                    color: var(--Rojo);
+                    font-size: 2rem;
+                    z-index: 1;
+                }
                 #today--day--calendar::before{
                     content: ""; 
-                    transform: translate(-50%, -50%);
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
                     border: 2px solid var(--Negro);
                     aspect-ratio: 1/1;
                     width: 1.5rem;
                     border-radius: 50%;
-                    z-index: 1;
                 }
+                
 
     .bottom--calendar--section{
         color: var(--Negro);
