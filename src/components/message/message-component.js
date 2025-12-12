@@ -44,7 +44,7 @@ export class MessageComponent extends LitElement {
                     </div>
                 </div>
                 <article class="message--section d-flexx">
-                    <p class="main--message tinos-regular">${this._generateHandFont()}.</p>
+                    <p class="main--message tinos-regular">${this._generateHandFont()}</p>
                     
                     <p class="footer--message parisienne-regular red--hand--text">Love Note.</p>
                 </article>

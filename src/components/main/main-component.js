@@ -12,6 +12,7 @@ import img01 from '../../media/img01.png';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
 import { iconos } from '../../utils/icons.js';
+import { animate, press } from "motion"
 
 export class MainComponent extends LitElement {
 
@@ -41,6 +42,8 @@ export class MainComponent extends LitElement {
 
     firstUpdated(){
         this._linkGeneration();
+        this._copyLink();
+        
     }
 
     render(){
@@ -53,9 +56,12 @@ export class MainComponent extends LitElement {
                     <message-component .frase1=${this.datos.frase1} .fecha=${this.datos.fecha} .nombre=${this.datos.he} class="grid--message"></message-component>
                     <calendar-component .frase2=${this.datos.frase2} .fecha=${this.datos.fecha} class="grid--calendar"></calendar-component>
                     <music-component .track=${this.datos.link} class="grid--music"></music-component>   
-                    <button class="modal-btn d-flexx" @click=${this._openModal} title="Configuración">
+                    <button class="general-btn modal-btn d-flexx" @click=${this._openModal} title="Configuración">
                         ${unsafeHTML(iconos.bolt)}
                     </button> 
+                    <div class="general-btn link-btn d-flexx" @click=${this._copyLink} title="Share Link">
+                        ${unsafeHTML(iconos.link)}
+                    </div> 
                 </section>
                 
                 <custom-component @close-modal=${this._closeModal} .mostrar=${this.mostrar}></custom-component>
@@ -66,6 +72,7 @@ export class MainComponent extends LitElement {
     /* -------- FUNCTIONS MODAL -------- */
     _openModal(){
         this.mostrar = true;
+        
     }
     _closeModal(){
         this.mostrar = false;
@@ -74,6 +81,17 @@ export class MainComponent extends LitElement {
 
 
     /* -------- FUNCTIONS LINKS -------- */
+    _copyLink(){
+        const url = new URL(window.location.href);
+        navigator.clipboard.writeText(url);
+        press(".link-btn", (element) => {
+            animate(element, { scale: 0.8 }, { type: "spring", stiffness: 1000 })
+
+            return () =>
+                animate(element, { scale: 1 }, { type: "spring", stiffness: 500 })
+        });
+        console.log('Copy');
+    }
     _linkGeneration(){
         const url = new URL(window.location.href);
         const params = Object.fromEntries(new URLSearchParams(window.location.search));

@@ -6,6 +6,7 @@ import { unsafeCSS } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
 import { iconos } from '../../utils/icons.js'
+import { animate, scroll } from "motion"
 
 
 export class TimeComponent extends LitElement {
@@ -51,7 +52,7 @@ export class TimeComponent extends LitElement {
                 <div class="middle--card item--card d-flexx d-col">
                     <small class="cutive-mono-regular">Contador:</small>
                     <span class="cuenta--container d-flexx d-row">
-                        <p class="cuenta--number fredericka-the-great-regular">${this.daysCounter}</p>
+                        <p class="cuenta--number fredericka-the-great-regular">0</p>
                         <small class="cuenta--label cutive-mono-regular">días</small>
                         <p class="cuenta--texto parisienne-regular">Juntos.</p>
                     </span>
@@ -74,23 +75,27 @@ export class TimeComponent extends LitElement {
         const fechaInicio = this.fecha ? this.fecha : '2023-10-10';
         const s = this.she || 'Mariana';
         const h = this.he || 'Didier';
-        /* console.group("---- TIME COMPONENT ----"); */
 
         this._counterDays(fechaInicio);
         this._dateFormat(fechaInicio);
         this._inicialsFormat(s, h);
-
-        /* console.groupEnd(); */
     }
 
     _counterDays(f){
+        const numeros = this.renderRoot.querySelector('.cuenta--number');
+
         const inicio = new Date(f);
         const hoy = new Date();
 
         const diff = hoy - inicio;
 
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        this.daysCounter = days;    
+        animate(0, days, {
+            duration: 10,
+            ease: [0.259, 0.678, 0, 0.987],
+            onUpdate: (latest) => (numeros.innerHTML = Math.round(latest)),
+        })
+        this.daysCounter = days;
     }
     _dateFormat(f){
         const fecha = new Date(f);
@@ -127,6 +132,5 @@ export class TimeComponent extends LitElement {
     _inicialsFormat(s, h){
         this.inicialesCard = `${h[0]}&${s[0]}`;
     }
-    
 }
 customElements.define('time-component', TimeComponent);

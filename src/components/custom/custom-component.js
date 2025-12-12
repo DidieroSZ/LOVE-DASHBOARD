@@ -12,6 +12,7 @@ export class CustomComponent extends LitElement {
         dias: { type: Number },
         mensaje: { type: String },
         mostrar: { type: Boolean },
+        showLoader: { type: Boolean },
         datos: { type: Object}
     };
 
@@ -20,6 +21,7 @@ export class CustomComponent extends LitElement {
         this.dias = 0;
         this.mensaje = '';
         this.mostrar = false;
+        this.showLoader = false;
         this.datos = {
             she: '',
             he: '',
@@ -40,7 +42,6 @@ export class CustomComponent extends LitElement {
             if ( this.mostrar == true) {
                 this._fillDataModal();
             }
-            
         }
     }
 
@@ -59,8 +60,7 @@ export class CustomComponent extends LitElement {
                             <p class="">Configuración</p>
                         </div>
                         <div class="middle--card item--card d-flexx d-row">
-                            ${this._renderInputs()}
-
+                           ${this.showLoader ? this._renderLoader() : this._renderInputs()}
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@ export class CustomComponent extends LitElement {
         let valor = v;
         valor = valor.trim();
         if (n !== 'fecha' && n !== 'link' ) {
-            valor = valor.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ,!¡¿? ]/g, "");
+            valor = valor.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ,!¡¿?. ]/g, "");
         }
         if (n == 'she' || n == 'he' ) {
             valor = valor.replace(/[0-9]/g, "");
@@ -136,9 +136,10 @@ export class CustomComponent extends LitElement {
     /* -------- FUNCTIONS LINKS -------- */
     _linkGeneration(){
         const url = new URL(window.location.href);
-        
         const paramsUrl = this._paramsSet(url);
+
         navigator.clipboard.writeText(paramsUrl);
+        
         setTimeout(() => {
             window.location = paramsUrl;
         }, 5000);        
@@ -160,30 +161,24 @@ export class CustomComponent extends LitElement {
         const inputs = this.renderRoot.querySelectorAll('.input--modal');
         const url = new URL(window.location.href);
         const keysData = Object.keys( this.datos );
-        const params = new URLSearchParams(window.location.search);
 
-        console.log(inputs);
         inputs.forEach((input) => {
             let nameInput = input.id;
-            let valueInput = input.value;
             
             for (let i = 0; i < keysData.length; i++) {
                 let paramName = keysData[i];
                 if (nameInput == paramName) {
                     if (paramName == 'link' && nameInput == 'link') {
                         let val = url.searchParams.get(keysData[i]);
-                        input.value = `https://open.spotify.com/embed/track/${val}?utm_source=generator`;
+                        
+                        input.value = `https://open.spotify.com/intl-es/track/${val}?si=ea5bcefaab9c422f`;
                     }
                     else{
                         input.value = url.searchParams.get(keysData[i]);
                     }
                 }
-
             }
-
-        });
-        
-        
+        });        
     }
     _closeModal(){
         this.mostrar = false;
@@ -193,7 +188,6 @@ export class CustomComponent extends LitElement {
                 composed: true
             })
         );
-        
     }
     _alertModal(v){
         const alert = this.renderRoot.querySelector('.alert--modal');
@@ -209,10 +203,8 @@ export class CustomComponent extends LitElement {
 
         if (v) {
             alert.classList.add('succes--alert');
-            this.mensaje = 'Información Guardada, redireccionando...';
-            setTimeout(() => {
-                this._closeModal();
-            }, 5000);
+            this.mensaje = 'Información guardandose, espera un momento...';
+            this.showLoader = true;
         }
         else{
             alert.classList.add('error--alert');
@@ -223,8 +215,15 @@ export class CustomComponent extends LitElement {
 
 
     /* -------- FUNCTIONS RENDER MODAL -------- */
+    _renderLoader() {
+        return html`
+            <div class="loader">
+                <label>Guardando...</label>
+                <div class="loading"></div>
+            </div>
+        `;
+    }
     _renderInputs(){
-        
         return html`
           <small class="">Campos personalizables:</small>
           <div class="input--container d-flexx d-col">
