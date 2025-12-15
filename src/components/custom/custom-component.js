@@ -170,6 +170,7 @@ export class CustomComponent extends LitElement {
                 if (nameInput == paramName) {
                     if (paramName == 'link' && nameInput == 'link') {
                         let val = url.searchParams.get(keysData[i]);
+                        val = val == null ? '6x8jWtps1WO4ShqBrDxLns' : val;
                         
                         input.value = `https://open.spotify.com/intl-es/track/${val}?si=ea5bcefaab9c422f`;
                     }
