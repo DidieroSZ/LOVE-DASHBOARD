@@ -22,6 +22,7 @@
     --Pad03: 3rem;
 } */
 :host{
+    --calendarColor: #3b1427;
     --Negro: #14080E;
     --Blanco: #fff;
     --Gris: #CED3DC;
@@ -112,20 +113,12 @@
     position: relative;
 }
 
-.main--container{
-    background-color: var(--Gris);
+.main--container{   
     padding: var(--Pad02);
     background: url(../media/neat.png);
     background-size: cover;    
-    position: relative;
-    /* 
-    background-color: #d20062;
-    background-image: 
-    radial-gradient(at 60% 84%, #d20062 0%, transparent 60%), 
-    radial-gradient(at 2% 97%, #d6589f 0%, transparent 50%),
-    radial-gradient(at 8% 91%, #d895da 0%, transparent 40%), 
-    radial-gradient(at 31% 68%, #c4e4ff 0%, transparent 30%); 
-    */
+    position: relative;    
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(236, 72, 153, 0.25), transparent 70%), var(--Negro);
 }
     .decorations{
         width: 5rem;
@@ -188,33 +181,39 @@
             overflow: hidden;
         }
 
-        .modal-btn{
-            position: absolute;
-            top: var(--Pad01);
-            left: -3rem;
+        .general-btn{
             width: 3rem;
             height: auto;
             background-color: var(--Blanco);
             aspect-ratio: 1/1;
             border-radius: var(--Pad01);
-            border: none;
+            border: solid 1px var(--Gris);
             color: var(--Negro);
             cursor: pointer;
         }
-            .modal-btn:hover{
+            .general-btn:hover{
                 background-color: var(--Gris);
             }
-
-
+        .link-btn{
+            position: absolute;
+            top: 5rem;
+            left: -3rem;
+            height: 3rem;
+        }
+        .modal-btn{
+            position: absolute;
+            top: var(--Pad01);
+            left: -3rem;
+        }
 
 
 /* ---------- Extra-small Screens ---------- */
 @media screen and (max-width: 501px){
     :host{
-    --Pad01: 0.5rem;
-    --Pad02: 1rem;
-    --Pad03: 3rem;
-}
+        --Pad01: 0.5rem;
+        --Pad02: 1rem;
+        --Pad03: 3rem;
+    }
     .general--section{
         width: 100%;
         height: auto;
@@ -237,7 +236,6 @@
             grid-template-rows: auto;
             gap: var(--Pad02);
             padding: var(--Pad02);
-
         }
         .template--container--grid > [class^="grid"] {
             width: 100%;
@@ -274,13 +272,16 @@
         .grid--music {
             order: 4;
             grid-column: 1 / span 2;
-            min-height: 40vh;
+            min-height: 38vh;
         }
         .grid--message,.grid--calendar{
             grid-column: 1 / span 2;
             min-height: 52vh;
         }
-        .modal-btn{
+        .general-btn{
+            display: none;
+        }
+       /*  .modal-btn{
             position: fixed;
             top: var(--Pad02);
             left: auto;
@@ -297,7 +298,7 @@
             }
             .modal-btn:hover{
                 background-color: var(--Gris);
-            }
+            } */
 }
 
 /* ---------- Extra-small Screens ---------- */
@@ -312,4 +313,63 @@
 
 
 /* ---------- Large Screens ---------- */
+
+@media (max-width: 999px) {
+    :host{
+        --Pad01: 0.5rem;
+        --Pad02: 1rem;
+        --Pad03: 3rem;
+    }
+    .main--container{
+        padding: var(--Pad01);        
+    }
+    .template--container--grid{
+            width: auto;
+            min-width: 695px;
+            height: 100%;
+        }
+}
+@media (min-width: 1024px) and (max-width: 1299px) {
+    :host{
+        --Pad01: 0.5rem;
+        --Pad02: 1rem;
+        --Pad03: 3rem;
+    }
+    .template--container--grid{
+            width: auto;
+            min-width: 600px;
+            height: 100%;
+        }
+}
+@media (min-width: 1300px) and (max-width: 1400px) {
+    :host{
+        --Pad01: 0.5rem;
+        --Pad02: 1rem;
+        --Pad03: 3rem;
+    }
+    .template--container--grid{
+            width: auto;
+            min-width: 600px;
+            height: 100%;
+        }
+}
+@media (min-width: 1440px) and (max-width: 1600px) {
+    .template--container--grid{
+            width: auto;
+            min-width: 600px;
+            height: 91%;
+            min-height: 300px;
+            aspect-ratio: 1/1;
+        }
+}
+@media (min-width: 1620px) and (max-width: 1920px) {
+    .template--container--grid{
+            width: auto;
+            min-width: 600px;
+            height: 75%;
+            min-height: 40%;
+            aspect-ratio: 1/1;
+        }
+}
+
 /* ---------- Large Screens ---------- */

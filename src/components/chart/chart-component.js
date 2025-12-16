@@ -5,6 +5,7 @@ import { unsafeCSS } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
 import { iconos } from '../../utils/icons.js'
+import { animate, press } from "motion"
 
 export class ChartComponent extends LitElement {
 
@@ -21,9 +22,40 @@ export class ChartComponent extends LitElement {
         css` ${unsafeCSS(generalStyles)}`,
         css` ${unsafeCSS(chartStyles)}`,
     ];
+    firstUpdated() {
+        const bar01 = this.renderRoot.querySelector(".bar01");
+        const bar02 = this.renderRoot.querySelector(".bar02");
+        const bar03 = this.renderRoot.querySelector(".bar03");
+        const bar04 = this.renderRoot.querySelector(".bar04");
 
-    firstUpdated(){
+        press(bar01, (element) => {
+            animate(element, { scale: 0.8 }, { type: "spring", stiffness: 1000 })
 
+            return () => {
+                animate(element, { scale: 1 }, { type: "spring", stiffness: 500 })  
+            };
+        });
+        press(bar02, (element) => {
+            animate(element, { scale: 0.8 }, { type: "spring", stiffness: 1000 })
+
+            return () => {
+                animate(element, { scale: 1 }, { type: "spring", stiffness: 500 })  
+            };
+        });
+        press(bar03, (element) => {
+            animate(element, { scale: 0.8 }, { type: "spring", stiffness: 1000 })
+
+            return () => {
+                animate(element, { scale: 1 }, { type: "spring", stiffness: 500 })  
+            };
+        });
+        press(bar04, (element) => {
+            animate(element, { scale: 0.8 }, { type: "spring", stiffness: 1000 })
+
+            return () => {
+                animate(element, { scale: 1 }, { type: "spring", stiffness: 500 })  
+            };
+        });
     }
 
     render(){
@@ -46,11 +78,13 @@ export class ChartComponent extends LitElement {
                     <span class="pill--graph d-flexx pill01">Amor</span>
                     <span class="pill--graph d-flexx pill02">Conexión</span>
                     <span class="pill--graph d-flexx pill03">Tóxicidad</span>
-                    <span class="pill--graph d-flexx pill04">Felicidad</span>
+                    <span class="pill--graph d-flexx pill04">Seriedad</span>
                 </div>
             </section>
         `;
-    }
 
+        
+    }
+    
 }
 customElements.define('chart-component', ChartComponent);

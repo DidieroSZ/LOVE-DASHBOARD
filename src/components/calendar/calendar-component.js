@@ -120,7 +120,7 @@ export class CalendarComponent extends LitElement {
                 <tr>
                     ${week.map(day => {
 
-                            if (day == realDay) {
+                            if ( (day == realDay) && (realDay !== aniversaryDay) ) {
                                 return html`
                                     <td data-day="${day}" id="today--day--calendar">
                                         <p>${day}</p> 

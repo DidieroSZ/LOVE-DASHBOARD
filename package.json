@@ -23,7 +23,9 @@
   "homepage": "https://github.com/DidieroSZ/LOVE-DASHBOARD#readme",
   "dependencies": {
     "animejs": "^4.2.2",
-    "lit-element": "^4.2.1"
+    "lit-element": "^4.2.1",
+    "motion": "^12.23.26",
+    "scrollreveal": "^4.0.9"
   },
   "devDependencies": {
     "vite": "^7.2.2"

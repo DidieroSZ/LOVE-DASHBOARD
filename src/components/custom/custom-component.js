@@ -5,6 +5,7 @@ import { unsafeCSS } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
 import { iconos } from '../../utils/icons.js';
+import { animate, press, delay } from "motion"
 
 export class CustomComponent extends LitElement {
 
@@ -12,6 +13,7 @@ export class CustomComponent extends LitElement {
         dias: { type: Number },
         mensaje: { type: String },
         mostrar: { type: Boolean },
+        showLoader: { type: Boolean },
         datos: { type: Object}
     };
 
@@ -20,6 +22,7 @@ export class CustomComponent extends LitElement {
         this.dias = 0;
         this.mensaje = '';
         this.mostrar = false;
+        this.showLoader = false;
         this.datos = {
             she: '',
             he: '',
@@ -34,6 +37,15 @@ export class CustomComponent extends LitElement {
         css` ${unsafeCSS(generalStyles)}`,
         css` ${unsafeCSS(customStyles)}`,
     ];
+
+    updated(changedProps) {
+        if (changedProps.has('mostrar')) {
+            if ( this.mostrar == true) {
+                this._fillDataModal();
+                this.animationModalEnter();
+            }
+        }
+    }
 
     render(){
         if (this.mostrar) {
@@ -50,7 +62,7 @@ export class CustomComponent extends LitElement {
                             <p class="">Configuración</p>
                         </div>
                         <div class="middle--card item--card d-flexx d-row">
-                            ${this._renderInputs()}
+                           ${this.showLoader ? this._renderLoader() : this._renderInputs()}
                         </div>
                     </div>
                 </div>
@@ -74,7 +86,7 @@ export class CustomComponent extends LitElement {
             }
             else{
                 if (n == 'link') {
-                    if (!this._linkVerification(v)) {
+                    if (!this._spotifyLinkVerification(v)) {
                         errorInformation = false;
                     }
                 }
@@ -92,7 +104,7 @@ export class CustomComponent extends LitElement {
             this._linkGeneration();
         }
     }
-    _linkVerification(v){
+    _spotifyLinkVerification(v){
         let pr1 = v.includes("https://open.spotify.com/");
         let pr2 = v.includes("track/");
         
@@ -107,7 +119,7 @@ export class CustomComponent extends LitElement {
         let valor = v;
         valor = valor.trim();
         if (n !== 'fecha' && n !== 'link' ) {
-            valor = valor.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ,!¡¿? ]/g, "");
+            valor = valor.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ,!¡¿?. ]/g, "");
         }
         if (n == 'she' || n == 'he' ) {
             valor = valor.replace(/[0-9]/g, "");
@@ -127,20 +139,12 @@ export class CustomComponent extends LitElement {
     _linkGeneration(){
         const url = new URL(window.location.href);
         const paramsUrl = this._paramsSet(url);
+
         navigator.clipboard.writeText(paramsUrl);
+        
         setTimeout(() => {
             window.location = paramsUrl;
         }, 5000);        
-    }
-    _validationLink(){
-        const params = new URLSearchParams(window.location.search);
-        let validation = false;
-        const vars = Object.keys( this.datos );
-        vars.forEach(el => {
-            validation = params.has(el);
-        });
-
-        return validation;
     }
     _paramsSet(url){
         url.searchParams.set('she', this.datos.she);
@@ -155,6 +159,30 @@ export class CustomComponent extends LitElement {
 
 
     /* -------- FUNCTIONS MODAL -------- */
+    _fillDataModal(){
+        const inputs = this.renderRoot.querySelectorAll('.input--modal');
+        const url = new URL(window.location.href);
+        const keysData = Object.keys( this.datos );
+
+        inputs.forEach((input) => {
+            let nameInput = input.id;
+            
+            for (let i = 0; i < keysData.length; i++) {
+                let paramName = keysData[i];
+                if (nameInput == paramName) {
+                    if (paramName == 'link' && nameInput == 'link') {
+                        let val = url.searchParams.get(keysData[i]);
+                        val = val == null ? '6ohTBTmcNHe9UzvxAgA9wJ' : val;
+                        
+                        input.value = `https://open.spotify.com/intl-es/track/${val}?si=ea5bcefaab9c422f`;
+                    }
+                    else{
+                        input.value = url.searchParams.get(keysData[i]);
+                    }
+                }
+            }
+        });        
+    }
     _closeModal(){
         this.mostrar = false;
         this.dispatchEvent(
@@ -163,7 +191,6 @@ export class CustomComponent extends LitElement {
                 composed: true
             })
         );
-        
     }
     _alertModal(v){
         const alert = this.renderRoot.querySelector('.alert--modal');
@@ -179,10 +206,8 @@ export class CustomComponent extends LitElement {
 
         if (v) {
             alert.classList.add('succes--alert');
-            this.mensaje = 'Información Guardada, enlace copiado al portapapeles.';
-            setTimeout(() => {
-                this._closeModal();
-            }, 5000);
+            this.mensaje = 'Información guardandose, espera un momento...';
+            this.showLoader = true;
         }
         else{
             alert.classList.add('error--alert');
@@ -192,27 +217,52 @@ export class CustomComponent extends LitElement {
     /* -------- FUNCTIONS MODAL -------- */
 
 
-    /* -------- FUNCTIONS EVENTS -------- */
-    _eventGenerator(v){
-        switch (v) {
-            case 'fill-data':
-                this.dispatchEvent(
-                    new CustomEvent('fill-data', {
-                        bubbles: true,
-                        composed: true,
-                        detail: { datos: this.datos },
-                    })
-                );
-            break;
+
+    /* -------- FUNCTIONS ANIMATION -------- */
+    animationModalEnter(){
+        const c = this.renderRoot.querySelector('.custom--container');
+        const m = this.renderRoot.querySelector('.modal--container');
         
-            default:
-                break;
-        }
+        animate(c, 
+            {
+                opacity: 1,
+            },
+            {
+                duration: 0.3,
+                easing: "ease-out",  
+            }   
+        );
+        
+        delay( () => {
+            animate(m, 
+                {
+                    opacity: 1,
+                    scale: 1,
+                },
+                {
+                    duration: 0.4,
+                    easing: "ease-out",
+                    scale: {
+                        type: "spring",
+                        visualDuration: 0.3,
+                        bounce: 0.4
+                    }   
+                }   
+            );
+        }, 0.3);
     }
-    /* -------- FUNCTIONS EVENTS -------- */
+    /* -------- FUNCTIONS ANIMATION -------- */
 
 
     /* -------- FUNCTIONS RENDER MODAL -------- */
+    _renderLoader() {
+        return html`
+            <div class="loader">
+                <label>Guardando...</label>
+                <div class="loading"></div>
+            </div>
+        `;
+    }
     _renderInputs(){
         return html`
           <small class="">Campos personalizables:</small>
@@ -250,6 +300,7 @@ export class CustomComponent extends LitElement {
           </button>
           
         `;
+        
     }
     /* -------- FUNCTIONS RENDER MODAL -------- */
 }
