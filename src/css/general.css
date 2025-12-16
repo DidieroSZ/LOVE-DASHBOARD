@@ -371,5 +371,14 @@
             aspect-ratio: 1/1;
         }
 }
+@media (max-width: 1920px) and (max-height: 1080px){
+    .template--container--grid{
+            width: auto;
+            min-width: 600px;
+            height: 85%;
+            min-height: 40%;
+            aspect-ratio: 1/1;
+        }
+}
 
 /* ---------- Large Screens ---------- */
