@@ -208,98 +208,7 @@
 
 
 /* ---------- Extra-small Screens ---------- */
-@media screen and (max-width: 501px){
-    :host{
-        --Pad01: 0.5rem;
-        --Pad02: 1rem;
-        --Pad03: 3rem;
-    }
-    .general--section{
-        width: 100%;
-        height: auto;
-        overflow: hidden;
-        position: relative;
-    }
-    .main--container{
-        padding: 0;
-        height: auto;
-        
-    }
-        .template--container--grid{
-            width: 100%;
-            min-width: auto;
-            height: fit-content;
-            min-height: 100vh;
-            aspect-ratio: auto;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: auto;
-            gap: var(--Pad02);
-            padding: var(--Pad02);
-        }
-        .template--container--grid > [class^="grid"] {
-            width: 100%;
-            height: auto;
-            overflow: hidden;
-            position: relative;
-        }
-        .grid--time,
-        .grid--chart,
-        .grid--message,
-        .grid--calendar,
-        .grid--music {
-            grid-column: auto;
-            grid-row: auto;
-            height: fit-content;
-            min-height: 25vh;
-        }
-        .grid--time,
-        .grid--chart{
-            height: fit-content;
-        }
-        .grid--time{
-            order: 2;
-        }
-        .grid--chart{
-            order: 3;
-        }
-        .grid--message{
-            order: 5;
-        }
-        .grid--calendar{
-            order: 1;
-        }
-        .grid--music {
-            order: 4;
-            grid-column: 1 / span 2;
-            min-height: 38vh;
-        }
-        .grid--message,.grid--calendar{
-            grid-column: 1 / span 2;
-            min-height: 52vh;
-        }
-        .general-btn{
-            display: none;
-        }
-       /*  .modal-btn{
-            position: fixed;
-            top: var(--Pad02);
-            left: auto;
-            right: var(--Pad02);
-            width: 2rem;
-            height: auto;
-            aspect-ratio: 1/1;
-            border: solid 1px var(--Negro);
-            z-index: 2;
-        }
-            .modal-btn > svg{
-                width: 1rem;
-                aspect-ratio: 1/1;
-            }
-            .modal-btn:hover{
-                background-color: var(--Gris);
-            } */
-}
+
 
 /* ---------- Extra-small Screens ---------- */
 
@@ -378,6 +287,81 @@
             height: 85%;
             min-height: 40%;
             aspect-ratio: 1/1;
+        }
+}
+
+@media screen and (max-width: 501px){
+    :host{
+        --Pad01: 0.5rem;
+        --Pad02: 1rem;
+        --Pad03: 3rem;
+    }
+    .general--section{
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        position: relative;
+    }
+    .main--container{
+        padding: 0;
+        height: auto;
+        
+    }
+        .template--container--grid{
+            width: 100%;
+            min-width: auto;
+            height: fit-content;
+            min-height: 100vh;
+            aspect-ratio: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto;
+            gap: var(--Pad02);
+            padding: var(--Pad02);
+        }
+        .template--container--grid > [class^="grid"] {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .grid--time,
+        .grid--chart,
+        .grid--message,
+        .grid--calendar,
+        .grid--music {
+            grid-column: auto;
+            grid-row: auto;
+            height: fit-content;
+            min-height: 25vh;
+        }
+        .grid--time,
+        .grid--chart{
+            height: fit-content;
+        }
+        .grid--time{
+            order: 2;
+        }
+        .grid--chart{
+            order: 3;
+        }
+        .grid--message{
+            order: 5;
+        }
+        .grid--calendar{
+            order: 1;
+        }
+        .grid--music {
+            order: 4;
+            grid-column: 1 / span 2;
+            min-height: 38vh;
+        }
+        .grid--message,.grid--calendar{
+            grid-column: 1 / span 2;
+            min-height: 52vh;
+        }
+        .general-btn{
+            display: none;
         }
 }
 
