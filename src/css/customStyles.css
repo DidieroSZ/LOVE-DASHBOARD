@@ -5,9 +5,9 @@
     background-color: #14080e7c;
     backdrop-filter: blur( var(--Pad01) );
     z-index: 10;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
+    top: 0;
+    left: 0;
+    /* opacity: 0; */
 }
     .alert--modal{
         width: auto;
@@ -53,6 +53,8 @@
         padding: var(--Pad01);
         overflow: hidden;
         border-radius: var(--Pad01);
+        opacity: 0;
+        transform: scale(0);
     }
 
     .card--container{

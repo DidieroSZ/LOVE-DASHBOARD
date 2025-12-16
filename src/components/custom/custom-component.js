@@ -5,6 +5,7 @@ import { unsafeCSS } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
 import { iconos } from '../../utils/icons.js';
+import { animate, press, delay } from "motion"
 
 export class CustomComponent extends LitElement {
 
@@ -41,6 +42,7 @@ export class CustomComponent extends LitElement {
         if (changedProps.has('mostrar')) {
             if ( this.mostrar == true) {
                 this._fillDataModal();
+                this.animationModalEnter();
             }
         }
     }
@@ -170,7 +172,7 @@ export class CustomComponent extends LitElement {
                 if (nameInput == paramName) {
                     if (paramName == 'link' && nameInput == 'link') {
                         let val = url.searchParams.get(keysData[i]);
-                        val = val == null ? '6x8jWtps1WO4ShqBrDxLns' : val;
+                        val = val == null ? '6ohTBTmcNHe9UzvxAgA9wJ' : val;
                         
                         input.value = `https://open.spotify.com/intl-es/track/${val}?si=ea5bcefaab9c422f`;
                     }
@@ -213,6 +215,43 @@ export class CustomComponent extends LitElement {
         }
     }
     /* -------- FUNCTIONS MODAL -------- */
+
+
+
+    /* -------- FUNCTIONS ANIMATION -------- */
+    animationModalEnter(){
+        const c = this.renderRoot.querySelector('.custom--container');
+        const m = this.renderRoot.querySelector('.modal--container');
+        
+        animate(c, 
+            {
+                opacity: 1,
+            },
+            {
+                duration: 0.3,
+                easing: "ease-out",  
+            }   
+        );
+        
+        delay( () => {
+            animate(m, 
+                {
+                    opacity: 1,
+                    scale: 1,
+                },
+                {
+                    duration: 0.4,
+                    easing: "ease-out",
+                    scale: {
+                        type: "spring",
+                        visualDuration: 0.3,
+                        bounce: 0.4
+                    }   
+                }   
+            );
+        }, 0.3);
+    }
+    /* -------- FUNCTIONS ANIMATION -------- */
 
 
     /* -------- FUNCTIONS RENDER MODAL -------- */

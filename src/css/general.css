@@ -210,10 +210,10 @@
 /* ---------- Extra-small Screens ---------- */
 @media screen and (max-width: 501px){
     :host{
-    --Pad01: 0.5rem;
-    --Pad02: 1rem;
-    --Pad03: 3rem;
-}
+        --Pad01: 0.5rem;
+        --Pad02: 1rem;
+        --Pad03: 3rem;
+    }
     .general--section{
         width: 100%;
         height: auto;
@@ -236,7 +236,6 @@
             grid-template-rows: auto;
             gap: var(--Pad02);
             padding: var(--Pad02);
-
         }
         .template--container--grid > [class^="grid"] {
             width: 100%;
@@ -273,13 +272,16 @@
         .grid--music {
             order: 4;
             grid-column: 1 / span 2;
-            min-height: 40vh;
+            min-height: 38vh;
         }
         .grid--message,.grid--calendar{
             grid-column: 1 / span 2;
             min-height: 52vh;
         }
-        .modal-btn{
+        .general-btn{
+            display: none;
+        }
+       /*  .modal-btn{
             position: fixed;
             top: var(--Pad02);
             left: auto;
@@ -296,7 +298,7 @@
             }
             .modal-btn:hover{
                 background-color: var(--Gris);
-            }
+            } */
 }
 
 /* ---------- Extra-small Screens ---------- */
@@ -311,4 +313,63 @@
 
 
 /* ---------- Large Screens ---------- */
+
+@media (max-width: 999px) {
+    :host{
+        --Pad01: 0.5rem;
+        --Pad02: 1rem;
+        --Pad03: 3rem;
+    }
+    .main--container{
+        padding: var(--Pad01);        
+    }
+    .template--container--grid{
+            width: auto;
+            min-width: 695px;
+            height: 100%;
+        }
+}
+@media (min-width: 1024px) and (max-width: 1299px) {
+    :host{
+        --Pad01: 0.5rem;
+        --Pad02: 1rem;
+        --Pad03: 3rem;
+    }
+    .template--container--grid{
+            width: auto;
+            min-width: 600px;
+            height: 100%;
+        }
+}
+@media (min-width: 1300px) and (max-width: 1400px) {
+    :host{
+        --Pad01: 0.5rem;
+        --Pad02: 1rem;
+        --Pad03: 3rem;
+    }
+    .template--container--grid{
+            width: auto;
+            min-width: 600px;
+            height: 100%;
+        }
+}
+@media (min-width: 1440px) and (max-width: 1600px) {
+    .template--container--grid{
+            width: auto;
+            min-width: 600px;
+            height: 91%;
+            min-height: 300px;
+            aspect-ratio: 1/1;
+        }
+}
+@media (min-width: 1620px) and (max-width: 1920px) {
+    .template--container--grid{
+            width: auto;
+            min-width: 600px;
+            height: 75%;
+            min-height: 40%;
+            aspect-ratio: 1/1;
+        }
+}
+
 /* ---------- Large Screens ---------- */

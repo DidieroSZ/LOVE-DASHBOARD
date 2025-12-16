@@ -16,7 +16,6 @@ import loop_08 from '../../media/Loop_8.svg';
 
 import { iconos } from '../../utils/icons.js';
 import { animate, press, delay } from "motion"
-import ScrollReveal from "scrollreveal";
 
 export class MainComponent extends LitElement {
 
