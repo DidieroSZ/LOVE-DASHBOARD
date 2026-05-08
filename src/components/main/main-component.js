@@ -85,8 +85,8 @@ export class MainComponent extends LitElement {
 
     /* -------- FUNCTIONS LINKS -------- */
     _copyLink(){
-        /* const url = new URL(window.location.href);
-        navigator.clipboard.writeText(url); */
+        const url = new URL(window.location.href);
+        navigator.clipboard.writeText(url);
         console.log('Copy');
     }
     _linkGeneration(){
